@@ -10,8 +10,7 @@ public class MazeSolver {
         ArrayStack mazePath = new ArrayStack(theMaze.getRows() * theMaze.getCols());
         mazePath.push(theMaze.getStart());
         boolean finishReached = false;
-        myWindow = new MazeDisplay(theMaze, theMaze.getRows(), theMaze.getCols());
-        myWindow.showMaze();
+
         while (!finishReached) {
             myWindow.drawMaze();
             Coordinate currentPosition = (Coordinate) mazePath.pop();
@@ -51,10 +50,11 @@ public class MazeSolver {
         System.out.print("Number of cols? ");
         int COLS = fromUser.nextInt();
 
+
         for (int i = 0; i < 5; i++) {
             Maze aMaze = new Maze(ROWS, COLS);
-            //myWindow = new MazeDisplay(aMaze, ROWS, COLS);
-            //myWindow.showMaze();
+            myWindow = new MazeDisplay(aMaze, ROWS, COLS);
+            myWindow.showMaze();
             findPath(aMaze);
             try {
                 Thread.sleep(5000);
