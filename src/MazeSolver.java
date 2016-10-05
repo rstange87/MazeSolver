@@ -10,7 +10,10 @@ public class MazeSolver {
         ArrayStack mazePath = new ArrayStack(theMaze.getRows() * theMaze.getCols());
         mazePath.push(theMaze.getStart());
         boolean finishReached = false;
+        myWindow = new MazeDisplay(theMaze, theMaze.getRows(), theMaze.getCols());
+        myWindow.showMaze();
         while (!finishReached) {
+            myWindow.drawMaze();
             Coordinate currentPosition = (Coordinate) mazePath.pop();
             theMaze.visit(currentPosition);
             mazePath.push(currentPosition);
@@ -31,6 +34,11 @@ public class MazeSolver {
                 currentPosition = (Coordinate) mazePath.pop();
             }
             mazePath.push(currentPosition);
+            try {
+                Thread.sleep(50);
+            } catch (Exception ex) {
+            }
+
         }
         System.out.println(theMaze.getStart());
         System.out.println(theMaze.getFinish());
@@ -45,8 +53,8 @@ public class MazeSolver {
 
         for (int i = 0; i < 5; i++) {
             Maze aMaze = new Maze(ROWS, COLS);
-            myWindow = new MazeDisplay(aMaze, ROWS, COLS);
-            myWindow.showMaze();
+            //myWindow = new MazeDisplay(aMaze, ROWS, COLS);
+            //myWindow.showMaze();
             findPath(aMaze);
             try {
                 Thread.sleep(5000);
